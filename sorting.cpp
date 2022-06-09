@@ -7,67 +7,67 @@ void swap(int *x, int *y)
     *y = temp;
 }
 
-void bubbleSort(int vetor[], int n)
+void bubbleSort(int data[], int n)
 {
     int i, j;
     for (i = 0; i < n - 1; i++)
 
         for (j = 0; j < n - i - 1; j++)
-            if (vetor[j] > vetor[j + 1])
-                swap(&vetor[j], &vetor[j + 1]);
+            if (data[j] > data[j + 1])
+                swap(&data[j], &data[j + 1]);
 }
 
-void quickSort(int vetor[], int inicio, int fim)
+void quickSort(int data[], int start, int end)
 {
 
-    int pivo, aux, i, j, meio;
+    int pivot, aux, i, j, center;
 
-    i = inicio;
-    j = fim;
+    i = start;
+    j = end;
 
-    meio = (int)((i + j) / 2);
-    pivo = vetor[meio];
+    center = (int)((i + j) / 2);
+    pivot = data[center];
 
     do
     {
-        while (vetor[i] < pivo)
+        while (data[i] < pivot)
             i = i + 1;
-        while (vetor[j] > pivo)
+        while (data[j] > pivot)
             j = j - 1;
 
         if (i <= j)
         {
-            aux = vetor[i];
-            vetor[i] = vetor[j];
-            vetor[j] = aux;
+            aux = data[i];
+            data[i] = data[j];
+            data[j] = aux;
             i = i + 1;
             j = j - 1;
         }
     } while (j > i);
 
-    if (inicio < j)
-        quickSort(vetor, inicio, j);
-    if (i < fim)
-        quickSort(vetor, i, fim);
+    if (start < j)
+        quickSort(data, start, j);
+    if (i < end)
+        quickSort(data, i, end);
 }
 
 int main()
 {
-    int vetor[] = {45, 7, 10, 4, 13, 17, 20, 16, 41, 21, 38, 43, 31, 2};
-    int i, n = sizeof(vetor) / sizeof(vetor[0]);
+    int data[] = {45, 7, 10, 4, 13, 17, 20, 16, 41, 21, 38, 43, 31, 2};
+    int i, n = sizeof(data) / sizeof(data[0]);
 
     printf("\n");
-    bubbleSort(vetor, n);
+    bubbleSort(data, n);
     printf("Bubble Sort: \n");
     for (i = 0; i < 14; i++)
-        printf("%d ", vetor[i]);
+        printf("%d ", data[i]);
 
     printf("\n");
-    quickSort(vetor, 0, 13);
+    quickSort(data, 0, 13);
     printf("Quick Sort: \n");
     for (i = 0; i < 14; i++)
     {
-        printf("%d ", vetor[i]);
+        printf("%d ", data[i]);
     }
     printf("\n");
 }
